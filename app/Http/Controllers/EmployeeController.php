@@ -18,11 +18,14 @@ class EmployeeController extends Controller
 
   public function index()
   {
+
+    $users = User::orderBy('name')
+    ->paginate(5)
+    ->withQueryString()->all();
+
     return Inertia::render('Dashboard', [
       'filters' => Request::all('search', 'role'),
-      'users' => User::orderBy('name')
-      ->paginate(5)
-      ->withQueryString()->all()
+      'users' => $users,
     ]);
   }
 
