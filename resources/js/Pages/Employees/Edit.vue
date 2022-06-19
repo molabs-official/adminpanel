@@ -1,34 +1,161 @@
 <template>
-<BreezeAuthenticatedLayout>
-<div>
-    <Head :title="form.name" />
-    <h1 class="mb-8 text-3xl font-bold">
-      <Link class="text-indigo-400 hover:text-indigo-600" href="/dashboard">Back to dashboard</Link>
-      <span class="font-medium text-indigo-400">/</span>
-      {{ form.name }}
-    </h1>
-    <div class="max-w-3xl overflow-hidden bg-white rounded-md shadow">
-      <form @submit.prevent="update">
-        <div class="flex flex-wrap p-8 -mb-8 -mr-6">
-          <input v-model="form.name" :error="form.errors.name" class="w-full pb-8 pr-6 lg:w-1/2" label="Name" />
-          <input v-model="form.email" :error="form.errors.email" class="w-full pb-8 pr-6 lg:w-1/2" label="Email" />
-      
-        </div>
-        <div class="flex items-center px-8 py-4 border-t border-gray-100 bg-gray-50">
-          <button v-if="!user.deleted_at" class="text-red-600 hover:underline" tabindex="-1" type="button" @click="destroy">Delete User</button>
-          <loading-button :loading="form.processing" class="ml-auto btn-indigo" type="submit">Update User</loading-button>
-        </div>
-      </form>
+  <BreezeAuthenticatedLayout>
+  <div>
+      <div class="overflow-hidden bg-white shadow sm:rounded-lg">
+        <form @submit.prevent="update">
+          <div class="px-4 py-5 sm:px-6">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">
+              Applicant Information
+            </h3>
+            <p class="max-w-2xl mt-1 text-sm text-gray-500">
+              Personal details and application.
+            </p>
+          </div>
+          <div class="border-t border-gray-200">
+            <dl>
+              <div
+                class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              >
+                <dt class="text-sm font-medium text-gray-500">Full name</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <input
+                    v-model="form.name"
+                    :error="form.errors.name"
+                    class="w-full pb-8 pr-6 lg:w-1/2"
+                    label="Name"
+                  />
+                </dd>
+              </div>
+              <div
+                class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              >
+                <dt class="text-sm font-medium text-gray-500">
+                  Application for
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  Backend Developer
+                </dd>
+              </div>
+              <div
+                class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              >
+                <dt class="text-sm font-medium text-gray-500">Email address</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <input
+                    v-model="form.email"
+                    :error="form.errors.email"
+                    class="w-full pb-8 pr-6 lg:w-1/2"
+                    label="Email"
+                  />
+                </dd>
+              </div>
+              <div
+                class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              >
+                <dt class="text-sm font-medium text-gray-500">
+                  Salary expectation
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  $120,000
+                </dd>
+              </div>
+              <div
+                class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              >
+                <dt class="text-sm font-medium text-gray-500">About</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
+                  incididunt cillum culpa consequat. Excepteur qui ipsum aliquip
+                  consequat sint. Sit id mollit nulla mollit nostrud in ea
+                  officia proident. Irure nostrud pariatur mollit ad adipisicing
+                  reprehenderit deserunt qui eu.
+                </dd>
+              </div>
+              <div
+                class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
+              >
+                <dt class="text-sm font-medium text-gray-500">Attachments</dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                  <ul
+                    role="list"
+                    class="border border-gray-200 divide-y divide-gray-200 rounded-md "
+                  >
+                    <li
+                      class="flex items-center justify-between py-3 pl-3 pr-4 text-sm "
+                    >
+                      <div class="flex items-center flex-1 w-0">
+                        <PaperClipIcon
+                          class="flex-shrink-0 w-5 h-5 text-gray-400"
+                          aria-hidden="true"
+                        />
+                        <span class="flex-1 w-0 ml-2 truncate">
+                          resume_back_end_developer.pdf
+                        </span>
+                      </div>
+                      <div class="flex-shrink-0 ml-4">
+                        <a
+                          href="#"
+                          class="font-medium text-indigo-600 hover:text-indigo-500"
+                        >
+                          Download
+                        </a>
+                      </div>
+                    </li>
+                    <li
+                      class="flex items-center justify-between py-3 pl-3 pr-4 text-sm "
+                    >
+                      <div class="flex items-center flex-1 w-0">
+                        <PaperClipIcon
+                          class="flex-shrink-0 w-5 h-5 text-gray-400"
+                          aria-hidden="true"
+                        />
+                        <span class="flex-1 w-0 ml-2 truncate">
+                          coverletter_back_end_developer.pdf
+                        </span>
+                      </div>
+                      <div class="flex-shrink-0 ml-4">
+                        <a
+                          href="#"
+                          class="font-medium text-indigo-600 hover:text-indigo-500"
+                        >
+                          Download
+                        </a>
+                      </div>
+                    </li>
+                  </ul>
+                </dd>
+              </div>
+            </dl>
+          </div>
+          <div
+            class="flex items-center px-8 py-4 border-t border-gray-100 bg-gray-50"
+          >
+            <button
+              v-if="!user.deleted_at"
+              class="text-red-600 hover:underline"
+              tabindex="-1"
+              type="button"
+              @click="destroy"
+            >
+              Delete User
+            </button>
+            <loading-button
+              :loading="form.processing"
+              class="ml-auto btn-indigo"
+              type="submit"
+              >Update User</loading-button
+            >
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-</BreezeAuthenticatedLayout>
-  
+  </BreezeAuthenticatedLayout>
 </template>
 
 <script>
-import { Head, Link } from '@inertiajs/inertia-vue3'
-import LoadingButton from '@/Components/LoadingButton'
-import Input from '@/Components/Input'
+import { Head, Link } from "@inertiajs/inertia-vue3";
+import LoadingButton from "@/Components/LoadingButton";
+import Input from "@/Components/Input";
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 export default {
   components: {
@@ -37,35 +164,34 @@ export default {
     LoadingButton,
     BreezeAuthenticatedLayout,
     Input,
-
   },
- 
+
   props: {
     user: Object,
   },
-  remember: 'form',
+  remember: "form",
   data() {
     return {
       form: this.$inertia.form({
         name: this.user.name,
         email: this.user.email,
       }),
-    }
+    };
   },
   methods: {
     update() {
-      this.form.put(`/users/${this.user.id}`)
+      this.form.put(`/users/${this.user.id}`);
     },
     destroy() {
-      if (confirm('Are you sure you want to delete this organization?')) {
-        this.$inertia.delete(`/users/${this.user.id}`)
+      if (confirm("Are you sure you want to delete this organization?")) {
+        this.$inertia.delete(`/users/${this.user.id}`);
       }
     },
     restore() {
-      if (confirm('Are you sure you want to restore this organization?')) {
-        this.$inertia.put(`/users/${this.user.id}/restore`)
+      if (confirm("Are you sure you want to restore this organization?")) {
+        this.$inertia.put(`/users/${this.user.id}/restore`);
       }
-    }
-  }
-}
-  </script>
+    },
+  },
+};
+</script>

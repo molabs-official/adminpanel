@@ -51,7 +51,7 @@ class User extends Authenticatable
 
 
     public function isAdmin(){
-        $user = User::where('isAdmin', '=', 1)->get();
+        $user = User::where('isAdmin', '=', 'admin')->get();
        if($user){
             return true;
        } 

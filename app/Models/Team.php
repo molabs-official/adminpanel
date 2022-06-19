@@ -12,8 +12,8 @@ class Team extends Model
     use HasFactory;
     protected $fillable = ['name','description'];
 
-    public function employees(){
-        return $this->belongsToMany(related: Employee::class, foreignPivotKey:'employee_id' );
+    public function users(){
+        return $this->belongsToMany(related: User::class, foreignPivotKey:'user_id' );
     }
 
 }

@@ -8,7 +8,6 @@ import BreezeResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
 import MysideBar from "@/Components/SideBar";
 import Header from "@/Components/Header.vue";
 import { Link } from "@inertiajs/inertia-vue3";
-
 var md5 = require('md5');
 const showingNavigationDropdown = ref(false);
 </script>
