@@ -46,7 +46,7 @@ class User extends Authenticatable
     ];
 
     public function teams() {
-        return $this->belongsToMany(related: Team::class ,foreignPivotKey: 'team_id');
+        return $this->belongsTo(related: Team::class ,foreignKey: 'team_id');
     }
 
 

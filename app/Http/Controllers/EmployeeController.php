@@ -64,7 +64,7 @@ class EmployeeController extends Controller
   public function edit(User $user)
   {
     return Inertia::render('Employees/Edit', [
-      'user' => [
+      'user' => [ 
         'id' => $user->id,
         'name' => $user->name,
         'email' => $user->email,

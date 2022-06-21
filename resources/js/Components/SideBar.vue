@@ -133,7 +133,7 @@ import { Link } from "@inertiajs/inertia-vue3";
                     </svg>
                     <h6>Add Team</h6>
                   </Link>
-                  <Link class="flex pb-3">
+                  <Link href="/job" class="flex pb-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       class="w-5 h-5 text-gray-500 hover:text-red-300"

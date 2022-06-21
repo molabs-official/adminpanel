@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\JobController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -35,6 +36,8 @@ Route::group(['middleware' => 'auth'],function(){
     Route::post('/add',[TeamController::class,'store'])->name('storeteam');
     Route::get('/addteam',[TeamController::class,'create'])->name('addteam');
     Route::get('/dashboard/{user}/edit',[EmployeeController::class,'edit'])->name('employee.edit');
+    Route::get('/job',[JobController::class,'create'])->name('job');
+    Route::post('/addjob',[JobController::class,'store'])->name('addjob');
 
 });
 
