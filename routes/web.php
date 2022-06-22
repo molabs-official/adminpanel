@@ -38,7 +38,6 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/dashboard/{user}/edit',[EmployeeController::class,'edit'])->name('employee.edit');
     Route::get('/job',[JobController::class,'create'])->name('job');
     Route::post('/addjob',[JobController::class,'store'])->name('addjob');
-
 });
 
 

@@ -44,7 +44,7 @@
                         type="text"
                         name="first-name"
                         id="first-name"
-                        v-model="form.name"
+                        v-model="form.title"
                         autocomplete="given-name"
                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
@@ -58,18 +58,18 @@
                    
                       <input
                         type="text"
-                        name="email-address"
-                        id="email-address"
-                        v-model="form.email"
-                        autocomplete="email"
+                        name="Branch"
+                        id="branch"
+                        v-model="form.branch"
+                        autocomplete="branch"
                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                       />
                     </div>
 
                     <div class="col-span-6 sm:col-span-3">
                       <select-input
-                        v-model="form.type_id"
-                        :error="form.errors.type_id"
+                        v-model="form.type"
+                        :error="form.errors.type"
                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         label="Employement Type"
                       >
@@ -77,12 +77,19 @@
                         <option
                           v-for="type in types"
                           :key="type.id"
-                          :value="type.id"
+                          :value="type.name"
                           :v-model="text-black"
                         >
                           {{ type.name }}
                         </option>
                       </select-input>
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                      <label
+                        for="email-address"
+                        class="block text-sm font-medium text-gray-700"
+                        >Job Description</label>
+                        <QuillEditor  v-model="form.content" :value="form.content" theme="snow" />
                     </div>
                     
                   </div>
@@ -104,7 +111,9 @@
     </div>
   </BreezeAuthenticatedLayout>
 </template>
+
 <script setup>
+
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import SelectInput from "@/Components/SelectInput.vue";
 import Forms from "@/components/Forms";
@@ -112,18 +121,16 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { reactive } from "vue";
 import BreezeButton from "@/Components/Button.vue";
 import { ref } from "vue";
-import {
-  Listbox,
-  ListboxLabel,
-  ListboxButton,
-  ListboxOptions,
-  ListboxOption,
-} from "@headlessui/vue";
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.bubble.css';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
 import { Inertia } from "@inertiajs/inertia";
+import Swal from 'sweetalert2'
 
 defineProps({
   types: Array,
+  success: String,
 });
 
 const types = [
@@ -137,15 +144,34 @@ const types = [
         name: "Project time"
     },
 ]
-const selected = 3;
 
-
+const content = async() => {
+  await fetch('', {
+    method: 'POST',
+    headers: {
+      'content-Type': 'application/json'
+    },
+    body: JSON.stringify({content: form.content})
+  })
+}
+ 
 const form = useForm({
   title: null,
   branch: null,
-  type_id: null,
+  type: null,
 });
+
+
 function submit() {
-  Inertia.post(route("store"), form);
+  Inertia.post(route("addjob"), form);
+  Swal.fire({
+    title: 'Added',
+    text: 'Job Added Successfully',
+    icon: 'success'
+  });
+  
+  form.reset('title', 'branch' , 'type')
+  
 }
+
 </script>

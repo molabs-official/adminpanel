@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class JobController extends Controller
@@ -36,11 +37,19 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'title' => ['required', 'unique:title', 'max:255'],
-            'branch' => ['required', 'max:255'],
-            'type' => ['required','max:255']
+        // $validated = $request->validate([
+        //     'title' => ['required', 'max:255'],
+        //     'branch' => ['required', 'max:255'],
+        //     'type' => ['required','max:255']
+        // ]);
+
+        Job::create([
+            'title' => $request->title,
+            'branch' => $request->branch,
+            'type' => $request->type
         ]);
+
+        return redirect()->back();
     }
 
     /**

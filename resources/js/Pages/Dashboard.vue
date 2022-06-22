@@ -1,17 +1,22 @@
 <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import Tables from "@/components/Tabels";
-import { Head , Link} from "@inertiajs/inertia-vue3";
+import { Head , Link } from "@inertiajs/inertia-vue3";
 import md5 from "js-md5";
 import BreezeButton from "@/Components/Button.vue";
-
+import throttle from 'lodash/throttle'
 
 defineProps({
   filters:Object,
   users:Object,
+  success: String,
 })
-</script>
 
+
+const deep= true
+
+
+</script>
 <template>
   <Head title="Dashboard" />
 
@@ -27,6 +32,7 @@ defineProps({
         <div class="flex items-center justify-between pb-6">
           <div>
             <h2 class="font-semibold text-gray-600">Employee table</h2>
+            {{ success}}
             <span class="text-xs">All Employees</span>
           </div>
           <div class="flex items-center justify-between">
