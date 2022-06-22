@@ -24,11 +24,77 @@
               <h3 class="text-lg font-medium leading-6 text-gray-900">
                 Job Vacancy request
               </h3>
-              <p class="mt-1 text-sm text-gray-600">
-                Open a new job
-              </p>
+              <p class="mt-1 text-sm text-gray-600">Open a new job</p>
             </div>
           </div>
+          <div
+            class="items-center justify-between hidden text-xs text-gray-400 nav md:flex"
+          >
+            <ul class="flex pb-3 space-x-10 font-semibold uppercase border-b-4">
+              <li>
+                <a
+                  class="
+                    border-b-4
+                    pb-3
+                    hover:border-yellow
+                    @if($status
+                    ===
+                    'All')
+                    text-gray-900
+                    border-yellow
+                    @endif
+                  "
+                  href="#"
+                >
+                  All Jobs({{ $allstatusCount }})</a
+                >
+              </li>
+              <li>
+                <a
+                  class="
+                    transition
+                    duration-150
+                    ease-in
+                    border-b-4
+                    pb-3
+                    hover:border-yellow
+                    @if($status
+                    ===
+                    'Considering')
+                    text-gray-900
+                    border-yellow
+                    @endif
+                  "
+                  href="#"
+                >
+                  Urgent({{ $consideringstatusCount }})</a
+                >
+              </li>
+              <li>
+                <a
+                  class="
+                    transition
+                    duration-150
+                    ease-in
+                    border-b-4
+                    pb-3
+                    hover:border-yellow
+                    @if($status
+                    ===
+                    'In
+                    Progress')
+                    text-gray-900
+                    border-yellow
+                    @endif
+                  "
+                  href="#"
+                >
+                  Add New Job({{ $inprogressstatusCount }})</a
+                >
+              </li>
+            </ul>
+          </div>
+
           <div class="mt-5 md:mt-0 md:col-span-2">
             <form @submit.prevent="submit">
               <div class="overflow-hidden shadow sm:rounded-md">
@@ -38,8 +104,9 @@
                       <label
                         for="first-name"
                         class="block text-sm font-medium text-gray-700"
-                        >Job title</label>
-                    
+                        >Job title</label
+                      >
+
                       <input
                         type="text"
                         name="first-name"
@@ -54,8 +121,9 @@
                       <label
                         for="email-address"
                         class="block text-sm font-medium text-gray-700"
-                        >Branch Name</label>
-                   
+                        >Branch Name</label
+                      >
+
                       <input
                         type="text"
                         name="Branch"
@@ -78,7 +146,7 @@
                           v-for="type in types"
                           :key="type.id"
                           :value="type.name"
-                          :v-model="text-black"
+                          :v-model="text - black"
                         >
                           {{ type.name }}
                         </option>
@@ -88,10 +156,14 @@
                       <label
                         for="email-address"
                         class="block text-sm font-medium text-gray-700"
-                        >Job Description</label>
-                        <QuillEditor  v-model="form.content" :value="form.content" theme="snow" />
+                        >Job Description</label
+                      >
+                      <QuillEditor
+                        v-model="form.content"
+                        :value="form.content"
+                        theme="snow"
+                      />
                     </div>
-                    
                   </div>
                 </div>
                 <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
@@ -113,7 +185,6 @@
 </template>
 
 <script setup>
-
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import SelectInput from "@/Components/SelectInput.vue";
 import Forms from "@/components/Forms";
@@ -121,12 +192,12 @@ import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { reactive } from "vue";
 import BreezeButton from "@/Components/Button.vue";
 import { ref } from "vue";
-import { QuillEditor } from '@vueup/vue-quill'
-import '@vueup/vue-quill/dist/vue-quill.bubble.css';
-import '@vueup/vue-quill/dist/vue-quill.snow.css';
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.bubble.css";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
 import { Inertia } from "@inertiajs/inertia";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 
 defineProps({
   types: Array,
@@ -134,44 +205,41 @@ defineProps({
 });
 
 const types = [
-    {
-        name: "Full time"
-    },
-    {
-        name: "Part time"
-    },
-    {
-        name: "Project time"
-    },
-]
+  {
+    name: "Full time",
+  },
+  {
+    name: "Part time",
+  },
+  {
+    name: "Project time",
+  },
+];
 
-const content = async() => {
-  await fetch('', {
-    method: 'POST',
+const content = async () => {
+  await fetch("", {
+    method: "POST",
     headers: {
-      'content-Type': 'application/json'
+      "content-Type": "application/json",
     },
-    body: JSON.stringify({content: form.content})
-  })
-}
- 
+    body: JSON.stringify({ content: form.content }),
+  });
+};
+
 const form = useForm({
   title: null,
   branch: null,
   type: null,
 });
 
-
 function submit() {
   Inertia.post(route("addjob"), form);
   Swal.fire({
-    title: 'Added',
-    text: 'Job Added Successfully',
-    icon: 'success'
+    title: "Added",
+    text: "Job Added Successfully",
+    icon: "success",
   });
-  
-  form.reset('title', 'branch' , 'type')
-  
-}
 
+  form.reset("title", "branch", "type");
+}
 </script>

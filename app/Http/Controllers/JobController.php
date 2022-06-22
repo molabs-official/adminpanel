@@ -16,7 +16,14 @@ class JobController extends Controller
      */
     public function index()
     {
-        
+
+        $jobs = Job::orderBy('name')
+                ->paginate(5)
+                ->withQueryString()->all();
+                
+        return Inertia::render('Jobs/Index',[
+            'jobs' => $jobs
+        ]);
     }
 
     /**

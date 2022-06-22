@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/addteam',[TeamController::class,'create'])->name('addteam');
     Route::get('/dashboard/{user}/edit',[EmployeeController::class,'edit'])->name('employee.edit');
     Route::get('/job',[JobController::class,'create'])->name('job');
+    Route::get('/jobs',[JobController::class,'index'])->name('jobs');
     Route::post('/addjob',[JobController::class,'store'])->name('addjob');
 });
 
