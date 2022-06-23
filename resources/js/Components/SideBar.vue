@@ -150,7 +150,7 @@ import { Link } from "@inertiajs/inertia-vue3";
                     </svg>
                     <h6>Post Jobs</h6>
                   </Link>
-                  <Link class="flex pb-3">
+                  <Link href="/jobs" class="flex pb-3">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       class="w-5 h-5"

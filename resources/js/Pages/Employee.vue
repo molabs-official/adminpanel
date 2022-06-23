@@ -4,13 +4,8 @@
   <Head title="Add Employee" />
 
   <BreezeAuthenticatedLayout>
-    <template #header>
-      <h2 class="text-xl font-semibold leading-tight text-gray-800">
-        Employees
-      </h2>
-    </template>
-
-    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+   <div class="w-full sm:px-6">
+<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="hidden sm:block" aria-hidden="true">
         <div class="py-5">
           <div class="border-t border-gray-200" />
@@ -20,15 +15,130 @@
       <div class="mt-10 sm:mt-0">
         <div class="md:grid md:grid-cols-3 md:gap-6">
           <div class="md:col-span-1">
-            <div class="px-4 sm:px-0">
+             <div
+            class="items-center justify-between hidden text-xs text-gray-400 nav md:flex"
+          >
+            <ul class="flex pb-3 space-x-10 font-semibold uppercase border-b-4">
+              <li>
+                <Link
+                :class="{'active border-b-4 border-red-500 text-gray-900': $page.component === 'Employee'}"
+                  class="
+                    border-b-4
+                    pb-3
+                    hover:border-yellow
+                    @if($status
+                    ===
+                    'All')
+                    text-gray-900
+                    border-yellow
+                    @endif
+                  "
+                  href="/addemp"
+                >
+                  Add Employee</Link
+                >
+              </li>
+              <li>
+                <Link
+                :class="{'active border-b-4 border-red-500 text-gray-900': $page.component === 'Employees/Edit'}"
+                  class="
+                    transition
+                    duration-150
+                    ease-in
+                    border-b-4
+                    pb-3
+                    hover:border-yellow
+                    @if($status
+                    ===
+                    'Considering')
+                    text-gray-900
+                    border-yellow
+                    @endif
+                  "
+                  href="/emport"
+                >
+                  Emport Employee</Link
+                >
+              </li>
+            </ul>
+            </div>
+          </div>
+            <!-- <div class="px-4 sm:px-0">
               <h3 class="text-lg font-medium leading-6 text-gray-900">
                 Add Employee
               </h3>
               <p class="mt-1 text-sm text-gray-600">
                 Use a Personal Information of the employee.
               </p>
-            </div>
-          </div>
+            </div> -->
+          
+           <!-- <div
+            class="items-center justify-between hidden text-xs text-gray-400 nav md:flex"
+          >
+            <ul class="flex pb-3 space-x-10 font-semibold uppercase border-b-4">
+              <li>
+                <a
+                  class="
+                    border-b-4
+                    pb-3
+                    hover:border-yellow
+                    @if($status
+                    ===
+                    'All')
+                    text-gray-900
+                    border-yellow
+                    @endif
+                  "
+                  href="#"
+                >
+                  All Jobs({{ $allstatusCount }})</a
+                >
+              </li>
+              <li>
+                <a
+                  class="
+                    transition
+                    duration-150
+                    ease-in
+                    border-b-4
+                    pb-3
+                    hover:border-yellow
+                    @if($status
+                    ===
+                    'Considering')
+                    text-gray-900
+                    border-yellow
+                    @endif
+                  "
+                  href="#"
+                >
+                  Urgent({{ $consideringstatusCount }})</a
+                >
+              </li>
+              <li>
+                <a
+                  class="
+                    transition
+                    duration-150
+                    ease-in
+                    border-b-4
+                    pb-3
+                    hover:border-yellow
+                    @if($status
+                    ===
+                    'In
+                    Progress')
+                    text-gray-900
+                    border-yellow
+                    @endif
+                  "
+                  href="#"
+                >
+                  Add New Job({{ $inprogressstatusCount }})</a
+                >
+              </li>
+            </ul>
+          </div> -->
           <div class="mt-5 md:mt-0 md:col-span-2">
             <form @submit.prevent="submit">
               <div class="overflow-hidden shadow sm:rounded-md">
@@ -159,6 +269,10 @@
         </div>
       </div>
     </div>
+
+   </div>
+
+    
   </BreezeAuthenticatedLayout>
 </template>
 <script setup>

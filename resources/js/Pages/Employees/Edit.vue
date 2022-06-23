@@ -1,6 +1,6 @@
 <template>
   <BreezeAuthenticatedLayout>
-  <div>
+  <div class="w-full sm:px-6">
       <div class="overflow-hidden bg-white shadow sm:rounded-lg">
         <form @submit.prevent="update">
           <div class="px-4 py-5 sm:px-6">

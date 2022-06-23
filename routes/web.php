@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/job',[JobController::class,'create'])->name('job');
     Route::get('/jobs',[JobController::class,'index'])->name('jobs');
     Route::post('/addjob',[JobController::class,'store'])->name('addjob');
+    Route::inertia('/emport' , 'Employees/Emport');
 });
 
 

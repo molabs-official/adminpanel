@@ -1,15 +1,8 @@
-
-
 <template>
   <Head title="Add Employee" />
 
   <BreezeAuthenticatedLayout>
-    <template #header>
-      <h2 class="text-xl font-semibold leading-tight text-gray-800">
-        Employees
-      </h2>
-    </template>
-
+  <div class="w-full sm:px-6">
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
       <div class="hidden sm:block" aria-hidden="true">
         <div class="py-5">
@@ -27,6 +20,7 @@
               <p class="mt-1 text-sm text-gray-600">Open a new job</p>
             </div>
           </div>
+
           <div
             class="items-center justify-between hidden text-xs text-gray-400 nav md:flex"
           >
@@ -180,6 +174,9 @@
           </div>
         </div>
       </div>
+    
+  </div>
+    
     </div>
   </BreezeAuthenticatedLayout>
 </template>

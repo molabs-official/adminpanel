@@ -17,7 +17,7 @@ class JobController extends Controller
     public function index()
     {
 
-        $jobs = Job::orderBy('name')
+        $jobs = Job::orderBy('title')
                 ->paginate(5)
                 ->withQueryString()->all();
                 
