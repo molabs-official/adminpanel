@@ -20,12 +20,12 @@
             <div class="px-4 py-4 bg-white md:py-7 md:px-8 xl:px-10">
                 <div class="items-center justify-between sm:flex">
                     <div class="flex items-center">
-                        <a class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800" href=" javascript:void(0)">
+                        <a class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800">
                             <div class="px-8 py-2 text-indigo-700 bg-indigo-100 rounded-full">
                                 <p>All</p>
                             </div>
                         </a>
-                        <a class="ml-4 rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 sm:ml-8" href="javascript:void(0)">
+                        <!-- <a class="ml-4 rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 sm:ml-8" href="javascript:void(0)">
                             <div class="px-8 py-2 text-gray-600 rounded-full hover:text-indigo-700 hover:bg-indigo-100 ">
                                 <p>Done</p>
                             </div>
@@ -34,11 +34,11 @@
                             <div class="px-8 py-2 text-gray-600 rounded-full hover:text-indigo-700 hover:bg-indigo-100 ">
                                 <p>Pending</p>
                             </div>
-                        </a>
+                        </a> -->
                     </div>
-                    <button onclick="popuphandler(true)" class="inline-flex items-start justify-start px-6 py-3 mt-4 bg-indigo-700 rounded focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 sm:mt-0 hover:bg-indigo-600 focus:outline-none">
-                        <p class="text-sm font-medium leading-none text-white">Add Job</p>
-                    </button>
+                    <div class="ml-10 space-x-8 lg:ml-40">
+                        <Link href="/job" class="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"> new job </Link>
+                    </div>
                 </div>
                 <div class="overflow-x-auto mt-7">
                     <table class="w-full whitespace-nowrap">
@@ -172,8 +172,11 @@
 
 <script setup>
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import { Link } from "@inertiajs/inertia-vue3";
 import moment from 'moment';
 defineProps({
     jobs:Object
 })
+
+
 </script>
