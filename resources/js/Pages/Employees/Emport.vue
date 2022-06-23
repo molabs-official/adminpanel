@@ -160,9 +160,9 @@
                 <span>Drag and drop your</span>&nbsp;<span>files anywhere or</span>
               </p>
               <input id="hidden-input" type="file" multiple class="hidden" />
-              <button id="button" class="px-3 py-1 mt-2 bg-gray-200 rounded-sm hover:bg-gray-300 focus:shadow-outline focus:outline-none">
-                Upload a file
-              </button>
+              <input id="file-upload"
+                                name="file-upload"
+                                type="file" class=""/>
             </header>
 
             <h1 class="pt-8 pb-3 font-semibold text-gray-900 sm:text-lg">
@@ -179,7 +179,7 @@
 
           <!-- sticky footer -->
           <footer class="flex justify-end px-8 pt-4 pb-8">
-            <button id="submit" class="px-3 py-1 text-white bg-blue-700 rounded-sm hover:bg-blue-500 focus:shadow-outline focus:outline-none">
+            <button id="submit" class="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray">
               Upload now
             </button>
             <button id="cancel" class="px-3 py-1 ml-3 rounded-sm hover:bg-gray-300 focus:shadow-outline focus:outline-none">

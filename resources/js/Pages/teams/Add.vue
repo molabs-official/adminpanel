@@ -14,10 +14,10 @@ import { Head } from "@inertiajs/inertia-vue3";
       </h2>
     </template>
 
-    
-      <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+    <div class="w-full sm:px-6">
           <Forms />
-      </div>
+    </div>
+      
    
   </BreezeAuthenticatedLayout>
 </template>
