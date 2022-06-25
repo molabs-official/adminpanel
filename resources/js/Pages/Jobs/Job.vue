@@ -142,13 +142,13 @@
                       class=""
                     >
                     </Link>
-                    <Link
+                    <Button
                       @click="nextSteps"
                       v-if="steps == 1"
                       class="flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-center text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
                     >
                       Next
-                    </Link>
+                    </Button>
                   
                     <Link
                       v-if="steps == 2"
