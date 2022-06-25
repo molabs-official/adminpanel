@@ -2,69 +2,57 @@
   <Head title="Add Employee" />
 
   <BreezeAuthenticatedLayout>
-  <div class="w-full sm:px-6">
-    <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <div class="hidden sm:block" aria-hidden="true">
-        <div class="py-5">
-          <div class="border-t border-gray-200" />
-        </div>
-      </div>
-
-      <div class="mt-10 sm:mt-0">
-        <div class="md:grid md:grid-cols-3 md:gap-6">
-          <div class="md:col-span-1">
-            <div class="px-4 sm:px-0">
-              <h3 class="text-lg font-medium leading-6 text-gray-900">
-                Job Vacancy request
-              </h3>
-              <p class="mt-1 text-sm text-gray-600">Open a new job</p>
-            </div>
+    <div class="w-full sm:px-6">
+      <div class="text-gray-600">
+        <div class="container flex flex-col flex-wrap px-5 py-4 mx-auto">
+          <div class="flex flex-wrap mx-auto">
+            <a
+              class="inline-flex items-center justify-center w-1/2 py-3 font-medium leading-none tracking-wider text-orange-600 bg-gray-100 border-b-2 border-orange-600 rounded-t  sm:px-6 sm:w-auto sm:justify-start title-font"
+            >
+              Job Vacancy request
+            </a>
           </div>
-
-          <div class="mt-5 md:mt-0 md:col-span-2">
-            <form @submit.prevent="submit">
-              <div class="overflow-hidden shadow sm:rounded-md">
-                <div class="px-4 py-5 bg-white sm:p-6">
-                  <div class="flex flex-col">
-                    <div class="col-span-6 sm:col-span-3">
+          <div class="flex flex-col w-full text-center">
+            <div class="py-6 bg-white sm:py-8 lg:py-12">
+              <div class="px-4 mx-auto max-w-screen-2xl md:px-8">
+                <!-- form - start -->
+                <form class="max-w-screen-md mx-auto">
+                  <div v-if="steps == 1">
+                    <div class="flex flex-col mb-4">
                       <label
-                        for="first-name"
-                        class="block text-sm font-medium text-gray-700"
-                        >Job title</label
+                        for="name"
+                        class="inline-flex mb-2 text-sm text-gray-800"
+                        >Job Title</label
                       >
-
                       <input
-                        type="text"
-                        name="first-name"
-                        id="first-name"
+                        name="title"
                         v-model="form.title"
-                        autocomplete="given-name"
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        class="w-full px-3 py-2 text-gray-800 border rounded outline-none  bg-gray-50 focus:ring ring-indigo-300"
                       />
                     </div>
 
-                    <div class="col-span-6 sm:col-span-4">
+                    <div class="flex flex-col mb-4">
                       <label
-                        for="email-address"
-                        class="block text-sm font-medium text-gray-700"
+                        for="phone"
+                        class="inline-flex mb-2 text-sm text-gray-800"
                         >Branch Name</label
                       >
-
                       <input
-                        type="text"
-                        name="Branch"
-                        id="branch"
-                        v-model="form.branch"
-                        autocomplete="branch"
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        name="phone"
+                        class="w-full px-3 py-2 text-gray-800 border rounded outline-none  bg-gray-50 focus:ring ring-indigo-300"
                       />
                     </div>
 
-                    <div class="col-span-6 sm:col-span-3">
+                    <div class="flex flex-col mb-2">
+                      <label
+                        for="company"
+                        class="inline-flex mb-2 text-sm text-gray-800"
+                        >Employement Type</label
+                      >
                       <select-input
                         v-model="form.type"
                         :error="form.errors.type"
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm  focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         label="Employement Type"
                       >
                         <option :value="null" />
@@ -78,37 +66,100 @@
                         </option>
                       </select-input>
                     </div>
+                  </div>
+
+                  <div
+                    v-if="steps == 2"
+                    class="flex flex-row justify-between mb-4"
+                  >
                     <div class="col-span-6 sm:col-span-3">
                       <label
-                        for="email-address"
+                        for="job-decription"
                         class="block text-sm font-medium text-gray-700"
                         >Job Description</label
                       >
-                      <QuillEditor
-                        v-model="form.content"
-                        :value="form.content"
-                        theme="snow"
-                      />
+                      <QuillEditor theme="snow" class="w-96" />
+                    </div>
+                    <div class="col-span-6 sm:col-span-3">
+                      <div class="flex flex-col mb-4">
+                        <form @submit.prevent="addedSkills">
+                          <label
+                            for="phone"
+                            class="inline-flex mb-2 text-sm text-gray-800"
+                            >Add Skills</label
+                          >
+                          <input
+                            name="Skills"
+                            v-model="newSkill"
+                            class="w-full px-3 py-2 text-gray-800 border rounded outline-none  bg-gray-50 focus:ring ring-indigo-300"
+                          />
+
+                          <button
+                            class="inline-flex items-center px-6 py-2 mt-16 text-sm text-gray-800 rounded-lg shadow outline-none  gap-x-1 hover:bg-gray-100"
+                          >
+                            add
+                          </button>
+                        </form>
+                        <ul>
+                          <li
+                            v-for="skill in skills"
+                            :key="skill.id"
+                            class="text-white bg-red-500 rounded"
+                          >
+                            <h4>{{ skill.myskill }}</h4>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
-                  <BreezeButton
-                    class="ml-4 bg-orange-600"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                  >
-                    save
-                  </BreezeButton>
-                </div>
+
+                  <div class="flex items-center justify-between">
+                    <Link
+                      @click="pervSteps"
+                      :class="
+                        steps == 2
+                          ? 'inline-flex items-center px-6 py-2 mt-16 text-sm text-gray-800 rounded-lg shadow outline-none gap-x-1 hover:bg-gray-100'
+                          : 'hidden'
+                      "
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-4 h-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                        /></svg
+                      >Back
+                    </Link>
+
+                    <Button
+                      @click="nextSteps"
+                      v-if="steps == 1"
+                      class="inline-flex items-center w-full px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-center text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md  hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
+                    >
+                      Next
+                    </Button>
+                    <Link
+                      v-if="steps == 2"
+                      href="/job/description"
+                      class="inline-flex items-center px-4 py-2 mt-16 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md  hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
+                    >
+                      save
+                    </Link>
+                  </div>
+                </form>
+                <!-- form - end -->
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
-    
-  </div>
-    
     </div>
   </BreezeAuthenticatedLayout>
 </template>
@@ -133,6 +184,18 @@ defineProps({
   success: String,
 });
 
+const steps = ref(1);
+
+const newSkill = ref("");
+const skills = ref([]);
+
+function nextSteps() {
+  steps.value++;
+}
+
+function pervSteps() {
+  steps.value--;
+}
 const types = [
   {
     name: "Full time",
@@ -155,10 +218,17 @@ const content = async () => {
   });
 };
 
+const addedSkills = function () {
+  skills.value.push({
+    myskill: newSkill.value,
+  });
+};
+
 const form = useForm({
   title: null,
   branch: null,
   type: null,
+  skills: addedSkills,
 });
 
 function submit() {

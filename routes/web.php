@@ -40,6 +40,7 @@ Route::group(['middleware' => 'auth'],function(){
     Route::get('/jobs',[JobController::class,'index'])->name('jobs');
     Route::post('/addjob',[JobController::class,'store'])->name('addjob');
     Route::inertia('/emport' , 'Employees/Emport');
+    Route::inertia('/job/description' , 'Jobs/Description');
 });
 
 
