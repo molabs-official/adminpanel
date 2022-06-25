@@ -7,7 +7,7 @@
         <div class="container flex flex-col flex-wrap px-5 py-4 mx-auto">
           <div class="flex flex-wrap mx-auto">
             <a
-              class="inline-flex items-center justify-center w-1/2 py-3 font-medium leading-none tracking-wider text-orange-600 bg-gray-100 border-b-2 border-orange-600 rounded-t  sm:px-6 sm:w-auto sm:justify-start title-font"
+              class="inline-flex items-center justify-center w-1/2 py-3 font-medium leading-none tracking-wider text-orange-600 bg-gray-100 border-b-2 border-orange-600 rounded-t sm:px-6 sm:w-auto sm:justify-start title-font"
             >
               Job Vacancy request
             </a>
@@ -27,7 +27,7 @@
                       <input
                         name="title"
                         v-model="form.title"
-                        class="w-full px-3 py-2 text-gray-800 border rounded outline-none  bg-gray-50 focus:ring ring-indigo-300"
+                        class="w-full px-3 py-2 text-gray-800 border rounded outline-none bg-gray-50 focus:ring ring-indigo-300"
                       />
                     </div>
 
@@ -39,7 +39,7 @@
                       >
                       <input
                         name="phone"
-                        class="w-full px-3 py-2 text-gray-800 border rounded outline-none  bg-gray-50 focus:ring ring-indigo-300"
+                        class="w-full px-3 py-2 text-gray-800 border rounded outline-none bg-gray-50 focus:ring ring-indigo-300"
                       />
                     </div>
 
@@ -52,7 +52,7 @@
                       <select-input
                         v-model="form.type"
                         :error="form.errors.type"
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm  focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         label="Employement Type"
                       >
                         <option :value="null" />
@@ -91,11 +91,11 @@
                           <input
                             name="Skills"
                             v-model="newSkill"
-                            class="w-full px-3 py-2 text-gray-800 border rounded outline-none  bg-gray-50 focus:ring ring-indigo-300"
+                            class="w-full px-3 py-2 text-gray-800 border rounded outline-none bg-gray-50 focus:ring ring-indigo-300"
                           />
 
                           <button
-                            class="inline-flex items-center px-6 py-2 mt-16 text-sm text-gray-800 rounded-lg shadow outline-none  gap-x-1 hover:bg-gray-100"
+                            class="inline-flex items-center px-6 py-2 mt-16 text-sm text-gray-800 rounded-lg shadow outline-none gap-x-1 hover:bg-gray-100"
                           >
                             add
                           </button>
@@ -104,7 +104,7 @@
                           <li
                             v-for="skill in skills"
                             :key="skill.id"
-                            class="text-white bg-red-500 rounded"
+                            class="mb-5 text-white bg-red-500 rounded"
                           >
                             <h4>{{ skill.myskill }}</h4>
                           </li>
@@ -137,18 +137,23 @@
                         /></svg
                       >Back
                     </Link>
-
-                    <Button
+                    <Link
+                      v-if="steps == 1"
+                      class=""
+                    >
+                    </Link>
+                    <Link
                       @click="nextSteps"
                       v-if="steps == 1"
-                      class="inline-flex items-center w-full px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-center text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md  hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
+                      class="flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-center text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
                     >
                       Next
-                    </Button>
+                    </Link>
+                  
                     <Link
                       v-if="steps == 2"
                       href="/job/description"
-                      class="inline-flex items-center px-4 py-2 mt-16 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md  hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
+                      class="inline-flex items-center px-4 py-2 mt-16 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
                     >
                       save
                     </Link>
