@@ -5,7 +5,7 @@
     <div class="w-full sm:px-6">
       <div class="text-gray-600">
         <div class="container flex flex-col flex-wrap px-5 py-4 mx-auto">
-          <div class="flex flex-wrap mx-auto">
+          <div class="flex flex-wrap pb-5 mx-auto">
             <a
               class="inline-flex items-center justify-center w-1/2 py-3 font-medium leading-none tracking-wider text-orange-600 bg-gray-100 border-b-2 border-orange-600 rounded-t sm:px-6 sm:w-auto sm:justify-start title-font"
             >
@@ -72,13 +72,13 @@
                     v-if="steps == 2"
                     class="flex flex-row justify-between mb-4"
                   >
-                    <div class="col-span-6 sm:col-span-3">
+                    <div class="col-span-6 w-100 sm:col-span-3">
                       <label
                         for="job-decription"
                         class="block text-sm font-medium text-gray-700"
                         >Job Description</label
                       >
-                      <QuillEditor theme="snow" class="w-96" />
+                      <QuillEditor theme="snow" class="w-full" />
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                       <div class="flex flex-col mb-4">

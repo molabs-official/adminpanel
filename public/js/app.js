@@ -27250,7 +27250,7 @@ var _hoisted_3 = {
 };
 
 var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "flex flex-wrap mx-auto"
+  "class": "flex flex-wrap pb-5 mx-auto"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   "class": "inline-flex items-center justify-center w-1/2 py-3 font-medium leading-none tracking-wider text-orange-600 bg-gray-100 border-b-2 border-orange-600 rounded-t sm:px-6 sm:w-auto sm:justify-start title-font"
 }, " Job Vacancy request ")], -1
@@ -27318,7 +27318,7 @@ var _hoisted_17 = {
   "class": "flex flex-row justify-between mb-4"
 };
 var _hoisted_18 = {
-  "class": "col-span-6 sm:col-span-3"
+  "class": "col-span-6 w-100 sm:col-span-3"
 };
 
 var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
@@ -27418,7 +27418,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["modelValue", "error"])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $setup.steps == 2 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)($setup["QuillEditor"], {
         theme: "snow",
-        "class": "w-96"
+        "class": "w-full"
       })]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
         onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)($setup.addedSkills, ["prevent"])
       }, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
