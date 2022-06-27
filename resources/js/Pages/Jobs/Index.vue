@@ -117,7 +117,7 @@
                                     <button class="px-3 py-3 text-sm leading-none text-red-700 bg-red-100 rounded focus:outline-none">{{ job.branch }}</button>
                                 </td>
                                 <td class="pl-4">
-                                    <button class="px-5 py-3 text-sm leading-none text-gray-600 bg-gray-100 rounded focus:ring-2 focus:ring-offset-2 focus:ring-red-300 hover:bg-gray-200 focus:outline-none">View</button>
+                                    <Link :href="`/jobs/${job.id}/edit`" class="px-5 py-3 text-sm leading-none text-gray-600 bg-gray-100 rounded focus:ring-2 focus:ring-offset-2 focus:ring-red-300 hover:bg-gray-200 focus:outline-none">View</Link>
                                 </td>
                                 <td>
                                     <div class="relative px-5 pt-2">

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Gate;
 use App\Services\EmployeeService;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\UsersImport;
 use App\Models\User;
 use App\Models\Team;
 use Inertia\Inertia;
@@ -53,14 +55,16 @@ class EmployeeController extends Controller
     } else {
       return response()->json(['errot' => 403]);
     }
-
-
-
-
-
     return redirect()->back();
   }
 
+
+  public function fileImport(Request $request){
+      Excel::import(new UsersImport, $request->file('file')->store('temp'));
+      return redirect()->back();
+  }
+
+  
   public function edit(User $user)
   {
     return Inertia::render('Employees/Edit', [

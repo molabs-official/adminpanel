@@ -44,19 +44,17 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
-        // $validated = $request->validate([
-        //     'title' => ['required', 'max:255'],
-        //     'branch' => ['required', 'max:255'],
-        //     'type' => ['required','max:255']
-        // ]);
-
+      
+        $skills = collect($request->skills)->implode('myskills');
         Job::create([
             'title' => $request->title,
             'branch' => $request->branch,
-            'type' => $request->type
+            'type' => $request->type,
+            'content' => $request->content,
+            'skills' => $skills ,
         ]);
 
-        return redirect()->back();
+        return Redirect::route('jobs');
     }
 
     /**
@@ -65,9 +63,9 @@ class JobController extends Controller
      * @param  \App\Models\job  $job
      * @return \Illuminate\Http\Response
      */
-    public function show(job $job)
+    public function show(job $job, $id)
     {
-        //
+        
     }
 
     /**
@@ -78,7 +76,16 @@ class JobController extends Controller
      */
     public function edit(job $job)
     {
-        //
+        return Inertia::render('Jobs/Edit', [
+            'job' => [ 
+              'id' => $job->id,
+              'title' => $job->title,
+              'description' => $job->content,
+              'branch' => $job->branch,
+              'type' => $job->type,
+              'skills' => $job->skills
+             ]
+          ]);
     }
 
     /**

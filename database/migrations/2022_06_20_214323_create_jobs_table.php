@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->string('branch');
             $table->string('type');
+            $table->text('content');
+            $table->string('skills');
             $table->timestamps();
         });
     }
