@@ -95,7 +95,7 @@
                         </button>
                         <loading-button
                             :loading="form.processing"
-                            class="ml-auto btn-indigo"
+                            class="inline-flex items-center px-4 py-2 ml-auto text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
                             type="submit"
                             >Update Job</loading-button
                         >
@@ -111,6 +111,8 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 import LoadingButton from "@/Components/LoadingButton";
 import Input from "@/Components/Input";
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import Swal from "sweetalert2";
+
 export default {
     components: {
         Head,
@@ -137,18 +139,26 @@ export default {
     },
     methods: {
         update() {
-            this.form.put(`/users/${this.user.id}`);
+            this.form.put(`/jobs/${this.job.id}`);
+            Swal.fire({
+                position: 'top-end',
+                title: "Updated",
+                text: "Job Updated",
+                showConfirmButton: false,
+                icon: "success",
+                timer: 1500
+            });
         },
         destroy() {
             if (confirm("Are you sure you want to delete this organization?")) {
-                this.$inertia.delete(`/users/${this.user.id}`);
+                this.$inertia.delete(`/jobs/${this.job.id}`);
             }
         },
         restore() {
             if (
                 confirm("Are you sure you want to restore this organization?")
             ) {
-                this.$inertia.put(`/users/${this.user.id}/restore`);
+                this.$inertia.put(`/users/${this.job.id}/restore`);
             }
         },
     },

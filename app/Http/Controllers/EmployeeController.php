@@ -64,7 +64,7 @@ class EmployeeController extends Controller
       return redirect()->back();
   }
 
-  
+
   public function edit(User $user)
   {
     return Inertia::render('Employees/Edit', [
@@ -77,8 +77,16 @@ class EmployeeController extends Controller
   }
 
 
-  public function update()
+  public function update(User $user)
   {
+    $user->update(
+      Request::validate([
+        'name' => ['required', 'max:100'],
+        'email' => ['nullable', 'max:50', 'email'],
+        ])
+    );
+
+    return redirect()->back();
   }
 
   public function delete()

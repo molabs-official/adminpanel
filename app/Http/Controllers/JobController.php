@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\job;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -95,9 +95,19 @@ class JobController extends Controller
      * @param  \App\Models\job  $job
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, job $job)
+    public function update(job $job)
     {
-        //
+        $job->update(Request::validate(
+            [
+                'title' => ['required'],
+                'description' => ['required'],
+                'branch' => ['required'],
+                'type' => ['required'],
+                'skills' => ['required']
+           ]
+        ));
+
+        return Redirect::route('jobs');
     }
 
     /**

@@ -71,60 +71,7 @@
                   reprehenderit deserunt qui eu.
                 </dd>
               </div>
-              <div
-                class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
-              >
-                <dt class="text-sm font-medium text-gray-500">Attachments</dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  <ul
-                    role="list"
-                    class="border border-gray-200 divide-y divide-gray-200 rounded-md "
-                  >
-                    <li
-                      class="flex items-center justify-between py-3 pl-3 pr-4 text-sm "
-                    >
-                      <div class="flex items-center flex-1 w-0">
-                        <PaperClipIcon
-                          class="flex-shrink-0 w-5 h-5 text-gray-400"
-                          aria-hidden="true"
-                        />
-                        <span class="flex-1 w-0 ml-2 truncate">
-                          resume_back_end_developer.pdf
-                        </span>
-                      </div>
-                      <div class="flex-shrink-0 ml-4">
-                        <a
-                          href="#"
-                          class="font-medium text-indigo-600 hover:text-indigo-500"
-                        >
-                          Download
-                        </a>
-                      </div>
-                    </li>
-                    <li
-                      class="flex items-center justify-between py-3 pl-3 pr-4 text-sm "
-                    >
-                      <div class="flex items-center flex-1 w-0">
-                        <PaperClipIcon
-                          class="flex-shrink-0 w-5 h-5 text-gray-400"
-                          aria-hidden="true"
-                        />
-                        <span class="flex-1 w-0 ml-2 truncate">
-                          coverletter_back_end_developer.pdf
-                        </span>
-                      </div>
-                      <div class="flex-shrink-0 ml-4">
-                        <a
-                          href="#"
-                          class="font-medium text-indigo-600 hover:text-indigo-500"
-                        >
-                          Download
-                        </a>
-                      </div>
-                    </li>
-                  </ul>
-                </dd>
-              </div>
+             
             </dl>
           </div>
           <div
@@ -139,11 +86,10 @@
             >
               Delete User
             </button>
-            <loading-button
-              :loading="form.processing"
-              class="ml-auto btn-indigo"
+            <Button
+              class="inline-flex items-center px-4 py-2 ml-auto text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
               type="submit"
-              >Update User</loading-button
+              >Update User</Button
             >
           </div>
         </form>
@@ -157,6 +103,7 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 import LoadingButton from "@/Components/LoadingButton";
 import Input from "@/Components/Input";
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
+import Swal from "sweetalert2";
 export default {
   components: {
     Head,
@@ -180,7 +127,15 @@ export default {
   },
   methods: {
     update() {
-      this.form.put(`/users/${this.user.id}`);
+      this.form.put(`/dashboard/${this.user.id}`);
+       Swal.fire({
+        position: 'top-end',
+        title: "Updated",
+        text: "Profile Updated",
+        icon: "success",
+        showConfirmButton: false,
+        timer: 1500
+    });
     },
     destroy() {
       if (confirm("Are you sure you want to delete this organization?")) {
