@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\job;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -42,16 +43,16 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HttpRequest $request)
     {
-      
-        $skills = collect($request->skills)->implode('myskills');
+        $skills = collect($request->skills)->implode('myskills',',');
+
         Job::create([
             'title' => $request->title,
             'branch' => $request->branch,
             'type' => $request->type,
             'content' => $request->content,
-            'skills' => $skills ,
+            'skills' => $skills,
         ]);
 
         return Redirect::route('jobs');
