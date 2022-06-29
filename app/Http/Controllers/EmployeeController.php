@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Request;
 use App\Http\Requests\StoreEmployeeRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Gate;
 use App\Services\EmployeeService;
 use Illuminate\Support\Facades\Auth;
@@ -20,12 +21,13 @@ class EmployeeController extends Controller
 
   public function index()
   {
+    
 
     $users = User::orderBy('name')
     ->paginate(5)
     ->withQueryString()->all();
 
-    return Inertia::render('Dashboard', [
+    return Inertia::render('Employees/Index', [
       'filters' => Request::all('search', 'role'),
       'users' => $users,
     ]);
@@ -42,20 +44,25 @@ class EmployeeController extends Controller
   public function store(StoreEmployeeRequest $request)
   {
     
-    $user = User::where('isAdmin', '=', 'admin')->firstOrFail();
+    
 
-    if ($user) {
+   
+    $team_id =  $request->team_id;
+    $team = Team::find($team_id);
 
-      User::create([
+
+    $user = User::create([
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
         'isAdmin' => $request->role,
       ]);
-    } else {
-      return response()->json(['errot' => 403]);
-    }
-    return redirect()->back();
+
+      $employee = User::find($user->id);
+
+      $team->users()->attach($employee);
+
+      return Redirect::route('teams')->with('success','employee has been added');
   }
 
 

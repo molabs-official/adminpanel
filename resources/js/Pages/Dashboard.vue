@@ -101,7 +101,8 @@ const deep= true
     </div>
   </div>
 
-  
+  </BreezeAuthenticatedLayout>
+</template>
 
 
     <!-- <div class="flex w-3/6 md:w-full">
@@ -257,5 +258,4 @@ const deep= true
         </div>
       </div>
     </div> -->
-  </BreezeAuthenticatedLayout>
-</template>
+  

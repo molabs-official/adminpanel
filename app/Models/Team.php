@@ -13,7 +13,7 @@ class Team extends Model
     protected $fillable = ['name','description'];
 
     public function users(){
-        return $this->belongsToMany(related: User::class, foreignPivotKey:'user_id' );
+        return $this->belongsToMany(related: User::class )->using(TeamUser::class);
     }
 
 }

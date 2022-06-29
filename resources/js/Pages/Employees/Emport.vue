@@ -17,12 +17,12 @@
                                 class="items-center justify-between hidden text-xs text-gray-400 nav md:flex"
                             >
                                 <ul
-                                    class="flex pb-3 space-x-10 font-semibold uppercase border-b-4"
+                                    class="flex pb-3 space-x-10 font-semibold border-b-4"
                                 >
                                     <li>
                                         <Link
                                             :class="{
-                                                'active border-b-4 border-red-500 text-gray-900':
+                                                'active border-b-4 text-sm border-red-500 text-red-500':
                                                     $page.component ===
                                                     'Employee',
                                             }"
@@ -35,7 +35,7 @@
                                     <li>
                                         <Link
                                             :class="{
-                                                'active border-b-4 border-red-500 text-gray-900':
+                                                'active border-b-4 text-sm border-red-500 text-red-500':
                                                     $page.component ===
                                                     'Employees/Emport',
                                             }"

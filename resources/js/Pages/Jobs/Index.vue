@@ -7,14 +7,7 @@
             <div class="px-4 py-4 md:px-10 md:py-7">
                 <div class="flex items-center justify-between">
                     <p tabindex="0" class="text-base font-bold leading-normal text-gray-800 focus:outline-none sm:text-lg md:text-xl lg:text-2xl">Jobs</p>
-                    <div class="flex items-center px-4 py-3 text-sm font-medium leading-none text-gray-600 bg-gray-200 rounded cursor-pointer hover:bg-gray-300">
-                        <p>Sort By:</p>
-                        <select aria-label="select" class="ml-1 bg-transparent focus:text-indigo-600 focus:outline-none">
-                            <option class="text-sm text-indigo-800">Latest</option>
-                            <option class="text-sm text-indigo-800">Oldest</option>
-                            <option class="text-sm text-indigo-800">Latest</option>
-                        </select>
-                    </div>
+                    
                 </div>
             </div>
             <div class="px-4 py-4 bg-white md:py-7 md:px-8 xl:px-10">
@@ -25,7 +18,7 @@
                                 <p>All</p>
                             </div>
                         </a>
-                        <!-- <a class="ml-4 rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 sm:ml-8" href="javascript:void(0)">
+                        <a class="ml-4 rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 sm:ml-8" href="javascript:void(0)">
                             <div class="px-8 py-2 text-gray-600 rounded-full hover:text-indigo-700 hover:bg-indigo-100 ">
                                 <p>Done</p>
                             </div>
@@ -34,7 +27,7 @@
                             <div class="px-8 py-2 text-gray-600 rounded-full hover:text-indigo-700 hover:bg-indigo-100 ">
                                 <p>Pending</p>
                             </div>
-                        </a> -->
+                        </a>
                     </div>
                     <div class="ml-10 space-x-8 lg:ml-40">
                         <Link href="/job" class="inline-flex items-center px-4 py-2 ml-4 text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"> new job </Link>

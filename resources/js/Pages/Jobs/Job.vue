@@ -90,7 +90,51 @@
                                             /> -->
 
                                            
-                                              <textarea class="w-full h-full" v-model="form.content"/>
+                                             <TabGroup v-slot="{ selectedIndex }">
+                                                <TabList class="flex items-center">
+                                                    <Tab as="template" v-slot="{ selected }">
+                                                    <button :class="[selected ? 'text-gray-900 bg-gray-100 hover:bg-gray-200' : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100', 'px-3 py-1.5 border border-transparent text-sm font-medium rounded-md']">Write</button>
+                                                    </Tab>
+                                                    <Tab as="template" v-slot="{ selected }">
+                                                    <button :class="[selected ? 'text-gray-900 bg-gray-100 hover:bg-gray-200' : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100', 'ml-2 px-3 py-1.5 border border-transparent text-sm font-medium rounded-md']">Preview</button>
+                                                    </Tab>
+
+                                                    <!-- These buttons are here simply as examples and don't actually do anything. -->
+                                                    <div v-if="selectedIndex === 0" class="flex items-center ml-auto space-x-5">
+                                                    <div class="flex items-center">
+                                                        <button type="button" class="-m-2.5 w-10 h-10 rounded-full inline-flex items-center justify-center text-gray-400 hover:text-gray-500">
+                                                        <span class="sr-only">Insert link</span>
+                                                        <LinkIcon class="w-5 h-5" aria-hidden="true" />
+                                                        </button>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <button type="button" class="-m-2.5 w-10 h-10 rounded-full inline-flex items-center justify-center text-gray-400 hover:text-gray-500">
+                                                        <span class="sr-only">Insert code</span>
+                                                        <CodeIcon class="w-5 h-5" aria-hidden="true" />
+                                                        </button>
+                                                    </div>
+                                                    <div class="flex items-center">
+                                                        <button type="button" class="-m-2.5 w-10 h-10 rounded-full inline-flex items-center justify-center text-gray-400 hover:text-gray-500">
+                                                        <span class="sr-only">Mention someone</span>
+                                                        <AtSymbolIcon class="w-5 h-5" aria-hidden="true" />
+                                                        </button>
+                                                    </div>
+                                                    </div>
+                                                </TabList>
+                                                <TabPanels class="mt-2">
+                                                    <TabPanel class="p-0.5 -m-0.5 rounded-lg">
+                                                    <label for="comment" class="sr-only">Comment</label>
+                                                    <div>
+                                                        <textarea v-model="form.content" rows="5" name="comment" id="comment" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Add your comment..." />
+                                                    </div>
+                                                    </TabPanel>
+                                                    <TabPanel class="p-0.5 -m-0.5 rounded-lg">
+                                                    <div class="border-b">
+                                                        <div class="px-3 pt-2 pb-12 mx-px mt-px text-sm leading-5 text-gray-800">Preview content will render here.</div>
+                                                    </div>
+                                                    </TabPanel>
+                                                </TabPanels>
+                                                </TabGroup>
                                               
                                             
                                             <!-- <textarea v-model="form.content" class="w-full px-3 py-2 text-gray-800 border rounded outline-none bg-gray-50 focus:ring ring-indigo-300"></textarea> -->
@@ -195,9 +239,12 @@
 import BreezeAuthenticatedLayout from "@/Layouts/Authenticated.vue";
 import SelectInput from "@/Components/SelectInput.vue";
 import Forms from "@/components/Forms";
+import Text from "@/components/Textarea"
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 import { reactive } from "vue";
 import BreezeButton from "@/Components/Button.vue";
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/vue'
+import { AtSymbolIcon, CodeIcon, LinkIcon } from '@heroicons/vue/solid'
 import { ref } from "vue";
 
 import "@vueup/vue-quill/dist/vue-quill.bubble.css";

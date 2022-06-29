@@ -34,7 +34,7 @@ import {
     UsersIcon,
     XIcon,
 } from "@heroicons/vue/outline";
-import { SearchIcon } from "@heroicons/vue/solid";
+import { SearchIcon , CheckCircleIcon  } from "@heroicons/vue/solid";
 
 const navigation = [
     { name: "Dashboard", href: "#", icon: HomeIcon, current: true },
@@ -484,7 +484,7 @@ const sidebarOpen = ref(false);
                                         >
                                             <Link
                                                 class="flex items-center px-2 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white group"
-                                                href="/addemp"
+                                                href="/teams"
                                             >
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -702,8 +702,27 @@ const sidebarOpen = ref(false);
 
             <main class="flex-1">
                 <div class="py-6">
-                    <div class="px-4 mx-auto max-w-7xl sm:px-6 md:px-8">
+                    <div class="max-w-full px-4 mx-auto sm:px-6 md:px-8">
+                        
                         <!-- Replace with your content -->
+                        <div v-if="$page.props.flash.success" class="p-4 rounded-md bg-green-50">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <CheckCircleIcon class="w-5 h-5 text-green-400" aria-hidden="true" />
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-green-800">{{ $page.props.flash.success }}</p>
+                            </div>
+                            <div class="pl-3 ml-auto">
+                                <div class="-mx-1.5 -my-1.5">
+                                <button @click="$page.props.flash.success = false" type="button" class="inline-flex bg-green-50 rounded-md p-1.5 text-green-500 hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-50 focus:ring-green-600">
+                                    <span class="sr-only">Dismiss</span>
+                                    <XIcon class="w-5 h-5" aria-hidden="true" />
+                                </button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
                         <slot />
                         <!-- /End replace -->
                     </div>

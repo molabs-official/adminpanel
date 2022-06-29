@@ -11,7 +11,7 @@ class Employee extends Model
 
     protected $fillable = ['name', 'email','password'];
 
-    public function teams() {
-        return $this->belongsToMany(related: Team::class ,foreignPivotKey: 'team_id');
-    }
+    // public function teams() {
+    //     return $this->belongsToMany(related: Team::class ,foreignPivotKey: 'team_id');
+    // }
 }

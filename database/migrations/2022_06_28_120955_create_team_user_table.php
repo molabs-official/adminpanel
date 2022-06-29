@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('team_user',function (Blueprint $table){
-            $table->foreignId('user_id');
-            $table->foreignId('team_id');
-        }
-    );
+        Schema::create('team_user', function (Blueprint $table) {
+            $table->id();
+            $table->integer('team_id')->unsigned();
+            $table->integer('user_id')->unsigned();
+        });
     }
 
     /**
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('team_user');
     }
 };

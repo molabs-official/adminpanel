@@ -13,26 +13,16 @@
       </div>
 
       <div class="mt-10 sm:mt-0">
-        <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="flex flex-col">
           <div class="md:col-span-1">
              <div
             class="items-center justify-between hidden text-xs text-gray-400 nav md:flex"
           >
-            <ul class="flex pb-3 space-x-10 font-semibold uppercase border-b-4">
+            <ul class="flex pb-3 space-x-10 font-semibold border-b-4">
               <li>
                 <Link
-                :class="{'active border-b-4 border-red-500 text-gray-900': $page.component === 'Employee'}"
-                  class="
-                    border-b-4
-                    pb-3
-                    hover:border-yellow
-                    @if($status
-                    ===
-                    'All')
-                    text-gray-900
-                    border-yellow
-                    @endif
-                  "
+                :class="{'active border-b-4 border-red-500 text-sm text-red-500': $page.component === 'Employee'}"
+                  class="pb-3 border-b-4 hover:border-yellow"
                   href="/addemp"
                 >
                   Add Employee</Link
@@ -40,21 +30,8 @@
               </li>
               <li>
                 <Link
-                :class="{'active border-b-4 border-red-500 text-gray-900': $page.component === 'Employees/Edit'}"
-                  class="
-                    transition
-                    duration-150
-                    ease-in
-                    border-b-4
-                    pb-3
-                    hover:border-yellow
-                    @if($status
-                    ===
-                    'Considering')
-                    text-gray-900
-                    border-yellow
-                    @endif
-                  "
+                :class="{'active border-b-4 border-red-500 text-sm text-red-500': $page.component === 'Employees/Edit'}"
+                  class="pb-3 text-sm text-gray-900 transition duration-150 ease-in border-b-4 hover:border-yellow border-yellow"
                   href="/emport"
                 >
                   Emport Employee</Link
@@ -63,86 +40,11 @@
             </ul>
             </div>
           </div>
-            <!-- <div class="px-4 sm:px-0">
-              <h3 class="text-lg font-medium leading-6 text-gray-900">
-                Add Employee
-              </h3>
-              <p class="mt-1 text-sm text-gray-600">
-                Use a Personal Information of the employee.
-              </p>
-            </div> -->
-          
-           <!-- <div
-            class="items-center justify-between hidden text-xs text-gray-400 nav md:flex"
-          >
-            <ul class="flex pb-3 space-x-10 font-semibold uppercase border-b-4">
-              <li>
-                <a
-                  class="
-                    border-b-4
-                    pb-3
-                    hover:border-yellow
-                    @if($status
-                    ===
-                    'All')
-                    text-gray-900
-                    border-yellow
-                    @endif
-                  "
-                  href="#"
-                >
-                  All Jobs({{ $allstatusCount }})</a
-                >
-              </li>
-              <li>
-                <a
-                  class="
-                    transition
-                    duration-150
-                    ease-in
-                    border-b-4
-                    pb-3
-                    hover:border-yellow
-                    @if($status
-                    ===
-                    'Considering')
-                    text-gray-900
-                    border-yellow
-                    @endif
-                  "
-                  href="#"
-                >
-                  Urgent({{ $consideringstatusCount }})</a
-                >
-              </li>
-              <li>
-                <a
-                  class="
-                    transition
-                    duration-150
-                    ease-in
-                    border-b-4
-                    pb-3
-                    hover:border-yellow
-                    @if($status
-                    ===
-                    'In
-                    Progress')
-                    text-gray-900
-                    border-yellow
-                    @endif
-                  "
-                  href="#"
-                >
-                  Add New Job({{ $inprogressstatusCount }})</a
-                >
-              </li>
-            </ul>
-          </div> -->
-          <div class="mt-5 md:mt-0 md:col-span-2">
+            
+          <div class="h-full mt-5 md:mt-0 md:col-span-2">
             <form @submit.prevent="submit">
-              <div class="overflow-hidden shadow sm:rounded-md">
-                <div class="px-4 py-5 bg-white sm:p-6">
+              <div class="flex flex-row overflow-hidden shadow sm:rounded-md">
+                <div class="w-1/2 px-4 py-5 bg-white sm:p-6">
                   <div class="flex flex-col">
                     <div class="col-span-6 sm:col-span-3">
                       <label
@@ -156,7 +58,7 @@
                         id="first-name"
                         v-model="form.name"
                         autocomplete="given-name"
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm"
                       />
                     </div>
 
@@ -172,7 +74,7 @@
                         id="email-address"
                         v-model="form.email"
                         autocomplete="email"
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm"
                       />
                     </div>
 
@@ -188,15 +90,15 @@
                         id="passwords"
                         v-model="form.password"
                         autocomplete="password"
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm"
                       />
                     </div>
 
-                    <div class="col-span-6 sm:col-span-3">
+                    <div class="flex flex-row">
                       <select-input
                         v-model="form.team_id"
                         :error="form.errors.team_id"
-                        class="w-full pb-8 pr-6 lg:w-1/2"
+                        class="w-full pb-8 pr-6 lg:w-1/2 focus:ring-red-500 focus:border-red-500"
                         label="Assign to Team"
                       >
                         <option :value="null" />
@@ -204,66 +106,48 @@
                           v-for="team in teams"
                           :key="team.id"
                           :value="team.id"
+                         
                         >
                           {{ team.name }}
                         </option>
+                       
                       </select-input>
+                      <button> Add new team</button>
                     </div>
-                    <div>
-                      <label class="block text-sm font-medium text-gray-700">
-                        Import Employee
-                      </label>
-                      <div
-                        class="flex justify-center px-6 pt-5 pb-6 mt-1 border-2 border-gray-300 border-dashed rounded-md "
-                      >
-                        <div class="space-y-1 text-center">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-12 mx-auto text-gray-400 w-42"
-                            stroke="currentColor"
-                            fill="none"
-                            viewBox="0 0 48 48"
-                            aria-hidden="true"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V8z"
-                              clip-rule="evenodd"
-                            />
-                          </svg>
-                          <div class="flex text-sm text-gray-600">
-                            <label
-                              for="file-upload"
-                              class="relative font-medium text-indigo-600 bg-white rounded-md cursor-pointer hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
-                            >
-                              <span>Upload a file</span>
-                              <input
-                                id="file-upload"
-                                name="file-upload"
-                                type="file"
-                                class="sr-only"
-                              />
-                            </label>
-                            <p class="pl-1">or drag and drop</p>
-                          </div>
-                          <p class="text-xs text-gray-500">
-                            Execl, csv to 10MB
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
-                <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
+                <div class="flex flex-col items-center justify-center w-1/2">
+                  <button type="button" class="relative block w-2/3 p-12 text-center border-2 border-red-600 border-dashed rounded-lg hover:border-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                  
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span class="block mt-2 text-sm font-medium text-gray-900"> Drag and Drop Employee Image </span>
+                </button>
+                 
+                  <div class="flex mt-1 rounded-md shadow-sm">
+                    <div class="relative flex items-stretch flex-grow focus-within:z-10">
+                      
+                      <input type="email" name="email" id="email" class="block w-full pl-10 border-gray-300 rounded-none focus:ring-red-500 focus:border-red-500 rounded-l-md sm:text-sm" placeholder="Upload Employee CV" />
+                    </div>
+                    <button type="button" class="relative inline-flex items-center px-4 py-2 -ml-px space-x-2 text-sm font-medium text-gray-700 bg-red-600 border border-gray-300 rounded-r-md hover:bg-red-600 focus:outline-none focus:ring-1 focus:ring-red-500 focus:border-red-500">
+                      <SortAscendingIcon class="w-8 h-8 text-gray-100" aria-hidden="true" />
+                      <span></span>
+                    </button>
+                  </div>
+                </div>
+                
+              </div>
+              <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
                   <BreezeButton
-                    class="ml-4 bg-orange-600"
+                    class="ml-4 bg-red-600"
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
                   >
                     save
                   </BreezeButton>
                 </div>
-              </div>
             </form>
           </div>
         </div>
@@ -290,7 +174,7 @@ import {
   ListboxOptions,
   ListboxOption,
 } from "@headlessui/vue";
-import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
+import { CheckIcon, SelectorIcon ,SortAscendingIcon, UsersIcon } from "@heroicons/vue/solid";
 import { Inertia } from "@inertiajs/inertia";
 
 defineProps({

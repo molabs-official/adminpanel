@@ -30,13 +30,15 @@ Route::get('/', function () {
 
 
 Route::group(['middleware' => 'auth'],function(){
-    Route::get('/dashboard',[EmployeeController::class,'index'])->name('dashboard');
+    Route::get('/teams',[TeamController::class,'index'])->name('teams');
+    Route::get('/addteam',[TeamController::class,'create'])->name('addteam');
+    Route::post('/add',[TeamController::class,'store'])->name('storeteam');
+
     Route::get('/addemp',[EmployeeController::class,'create'])->name('employee');
     Route::post('/store',[EmployeeController::class,'store'])->name('store');
     Route::get('/dashboard/{user}/edit',[EmployeeController::class,'edit'])->name('employee.edit');
     Route::put('/dashboard/{user}',[EmployeeController::class,'update'])->name('employee.update');
-    Route::post('/add',[TeamController::class,'store'])->name('storeteam');
-    Route::get('/addteam',[TeamController::class,'create'])->name('addteam');
+    
     Route::get('/job',[JobController::class,'create'])->name('job');
     Route::get('/jobs',[JobController::class,'index'])->name('jobs');
     Route::post('/addjob',[JobController::class,'store'])->name('addjob');
