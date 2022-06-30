@@ -13,17 +13,19 @@ use Inertia\Inertia;
 
 class TeamController extends Controller
 {
-    public function index(Team $team)
+    public function index(Team $team, User $user)
     {
         // $users = $team->users()->paginate(10);
+        $media = $user->getMedia();
 
-        $teams = Team::with('users')->paginate(10);
+        $teams = Team::active()->with('users')->paginate(10);
         
         // dd($users);
 
       return Inertia::render('Employees/Index', [
         'filters' => Request::all('search', 'role'),
-        'teams' => $teams
+        'teams' => $teams,
+        'media' => $media
       ]);
     }
 
@@ -46,7 +48,6 @@ class TeamController extends Controller
         // dd($request);
       Team::create([
           'name' => $request->name,
-          'description' => $request->description
       ]);
 
       return redirect()->back();

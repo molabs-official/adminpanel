@@ -53,25 +53,12 @@
                 class="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
               >
                 <dt class="text-sm font-medium text-gray-500">
-                  Salary expectation
+                  Salary 
                 </dt>
                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   $120,000
                 </dd>
               </div>
-              <div
-                class="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6"
-              >
-                <dt class="text-sm font-medium text-gray-500">About</dt>
-                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                  Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim
-                  incididunt cillum culpa consequat. Excepteur qui ipsum aliquip
-                  consequat sint. Sit id mollit nulla mollit nostrud in ea
-                  officia proident. Irure nostrud pariatur mollit ad adipisicing
-                  reprehenderit deserunt qui eu.
-                </dd>
-              </div>
-             
             </dl>
           </div>
           <div
@@ -87,7 +74,7 @@
               Delete User
             </button>
             <Button
-              class="inline-flex items-center px-4 py-2 ml-auto text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-orange-600 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
+              class="inline-flex items-center px-4 py-2 ml-auto text-xs font-semibold tracking-widest text-white uppercase transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray"
               type="submit"
               >Update User</Button
             >

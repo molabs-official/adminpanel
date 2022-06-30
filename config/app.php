@@ -187,7 +187,7 @@ return [
          */
         Spatie\Permission\PermissionServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-
+     
 
         /*
          * Application Service Providers...

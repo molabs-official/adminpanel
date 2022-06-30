@@ -4,8 +4,10 @@
   <Head title="Add Employee" />
 
   <BreezeAuthenticatedLayout>
+
+  
    <div class="w-full sm:px-6">
-<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+<div class="mx-auto max-w-fullsm:px-6 lg:px-8">
       <div class="hidden sm:block" aria-hidden="true">
         <div class="py-5">
           <div class="border-t border-gray-200" />
@@ -108,13 +110,26 @@
                           :value="team.id"
                          
                         >
-                          {{ team.name }}
+                          {{ team.team_name }}
                         </option>
                        
                       </select-input>
-                      <button> Add new team</button>
                     </div>
-                    
+                    <div class="col-span-6 sm:col-span-3">
+                      <label
+                        for="first-name"
+                        class="block text-sm font-medium text-gray-700"
+                        >Add New Team</label
+                      >
+                      <input
+                        type="text"
+                        name="first-name"
+                        id="first-name"
+                        v-model="form.team_name"
+                        autocomplete="given-name"
+                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div class="flex flex-col items-center justify-center w-1/2">
@@ -123,7 +138,24 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12 mx-auto text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
+                 
+                  <div class="flex items-center mt-1">
+                                        <span
+                                            class="inline-block w-12 h-12 overflow-hidden bg-gray-100 rounded-md"
+                                        >
+                                           
+                                        </span>
+                                        <input
+                                            @change="
+                                                form.image =
+                                                    $event.target.files[0]
+                                            "
+                                            type="file"
+                                            class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        />
+                                    </div>
                   <span class="block mt-2 text-sm font-medium text-gray-900"> Drag and Drop Employee Image </span>
+
                 </button>
                  
                   <div class="flex mt-1 rounded-md shadow-sm">
@@ -177,6 +209,20 @@ import {
 import { CheckIcon, SelectorIcon ,SortAscendingIcon, UsersIcon } from "@heroicons/vue/solid";
 import { Inertia } from "@inertiajs/inertia";
 
+// Import Vue FilePond
+import vueFilePond from "vue-filepond";
+
+// Import FilePond styles
+import "filepond/dist/filepond.min.css";
+
+// Import FilePond plugins
+// Please note that you need to install these plugins separately
+
+// Import image preview plugin styles
+
+
+
+
 defineProps({
   teams: Array,
 });
@@ -188,7 +234,9 @@ const form = useForm({
   email: null,
   password: null,
   role: "Employee",
+  team_name:null,
   team_id: null,
+  image: null,
 });
 function submit() {
   Inertia.post(route("store"), form);

@@ -12,11 +12,11 @@
                         </a>
                     </div>
                 <div
-                    class="flex flex-col px-5 py-4 mx-auto"
+                    class="flex flex-col h-screen px-5 py-4 mx-auto"
                 >
                     
                     <div class="flex flex-col w-full text-center">
-                        <div class="py-6 bg-white sm:py-8 lg:py-12">
+                        <div class="h-full py-6 bg-white sm:py-8 lg:py-12">
                             <div class="px-4 mx-auto max-w-screen-2xl md:px-8">
                                 <!-- form - start -->
                                 <form class="max-w-screen-md mx-auto">
@@ -57,7 +57,6 @@
                                                 v-model="form.type"
                                                 :error="form.errors.type"
                                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 sm:text-sm"
-                                                label="Employement Type"
                                             >
                                                 <option :value="null" />
                                                 <option
@@ -84,58 +83,17 @@
                                                 class="block text-sm font-medium text-gray-700"
                                                 >Job Description</label
                                             >
-                                            <!-- <QuillEditor
+                                            <QuillEditor
                                                 :content="form.content"
                                                 theme="snow"
+                                                @blur="onEditorBlur($event)"
+                                                @focus="onEditorFocus($event)"
+                                                @ready="onEditorReady($event)"
                                                 class="w-full"
-                                            /> -->
+                                            />
 
                                            
-                                             <TabGroup v-slot="{ selectedIndex }">
-                                                <TabList class="flex items-center">
-                                                    <Tab as="template" v-slot="{ selected }">
-                                                    <button :class="[selected ? 'text-gray-900 bg-gray-100 hover:bg-gray-200' : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100', 'px-3 py-1.5 border border-transparent text-sm font-medium rounded-md']">Write</button>
-                                                    </Tab>
-                                                    <Tab as="template" v-slot="{ selected }">
-                                                    <button :class="[selected ? 'text-gray-900 bg-gray-100 hover:bg-gray-200' : 'text-gray-500 hover:text-gray-900 bg-white hover:bg-gray-100', 'ml-2 px-3 py-1.5 border border-transparent text-sm font-medium rounded-md']">Preview</button>
-                                                    </Tab>
-
-                                                    <!-- These buttons are here simply as examples and don't actually do anything. -->
-                                                    <div v-if="selectedIndex === 0" class="flex items-center ml-auto space-x-5">
-                                                    <div class="flex items-center">
-                                                        <button type="button" class="-m-2.5 w-10 h-10 rounded-full inline-flex items-center justify-center text-gray-400 hover:text-gray-500">
-                                                        <span class="sr-only">Insert link</span>
-                                                        <LinkIcon class="w-5 h-5" aria-hidden="true" />
-                                                        </button>
-                                                    </div>
-                                                    <div class="flex items-center">
-                                                        <button type="button" class="-m-2.5 w-10 h-10 rounded-full inline-flex items-center justify-center text-gray-400 hover:text-gray-500">
-                                                        <span class="sr-only">Insert code</span>
-                                                        <CodeIcon class="w-5 h-5" aria-hidden="true" />
-                                                        </button>
-                                                    </div>
-                                                    <div class="flex items-center">
-                                                        <button type="button" class="-m-2.5 w-10 h-10 rounded-full inline-flex items-center justify-center text-gray-400 hover:text-gray-500">
-                                                        <span class="sr-only">Mention someone</span>
-                                                        <AtSymbolIcon class="w-5 h-5" aria-hidden="true" />
-                                                        </button>
-                                                    </div>
-                                                    </div>
-                                                </TabList>
-                                                <TabPanels class="mt-2">
-                                                    <TabPanel class="p-0.5 -m-0.5 rounded-lg">
-                                                    <label for="comment" class="sr-only">Comment</label>
-                                                    <div>
-                                                        <textarea v-model="form.content" rows="5" name="comment" id="comment" class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Add your comment..." />
-                                                    </div>
-                                                    </TabPanel>
-                                                    <TabPanel class="p-0.5 -m-0.5 rounded-lg">
-                                                    <div class="border-b">
-                                                        <div class="px-3 pt-2 pb-12 mx-px mt-px text-sm leading-5 text-gray-800">Preview content will render here.</div>
-                                                    </div>
-                                                    </TabPanel>
-                                                </TabPanels>
-                                                </TabGroup>
+                                         
                                               
                                             
                                             <!-- <textarea v-model="form.content" class="w-full px-3 py-2 text-gray-800 border rounded outline-none bg-gray-50 focus:ring ring-indigo-300"></textarea> -->
@@ -248,8 +206,8 @@ import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/vue'
 import { AtSymbolIcon, CodeIcon, LinkIcon } from '@heroicons/vue/solid'
 import { ref } from "vue";
 
-import "@vueup/vue-quill/dist/vue-quill.bubble.css";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import { QuillEditor, Quill } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { CheckIcon, SelectorIcon } from "@heroicons/vue/solid";
 import { Inertia } from "@inertiajs/inertia";
 import Swal from "sweetalert2";

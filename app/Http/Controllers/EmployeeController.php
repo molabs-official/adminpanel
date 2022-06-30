@@ -58,9 +58,23 @@ class EmployeeController extends Controller
         'isAdmin' => $request->role,
       ]);
 
-      $employee = User::find($user->id);
+      if($request->hasFile('image') && $request->file('image')->isValid()){ 
+        $user->addMediaFromRequest('image')->toMediaCollection('images');
+    }
 
-      $team->users()->attach($employee);
+
+      if($team){
+        $employee = User::find($user->id);
+
+        $team->users()->attach($employee);
+      }else{
+        $newteam = Team::create(['auth_id' => Auth::user()->id,'team_name' => $request->team_name]);
+        $employee = User::find($user->id);
+        $newteamId = $newteam->id;
+        $attach = Team::find($newteamId);
+        $attach->users()->attach($employee);
+      }
+     
 
       return Redirect::route('teams')->with('success','employee has been added');
   }

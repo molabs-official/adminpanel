@@ -503,26 +503,6 @@ const sidebarOpen = ref(false);
                                                 <h6>Team Members</h6>
                                             </Link>
 
-                                            <Link
-                                                class="flex items-center px-2 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white group"
-                                                href="/addteam"
-                                            >
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    class="w-5 h-5"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                    stroke-width="2"
-                                                >
-                                                    <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                                                    />
-                                                </svg>
-                                                <h6>Add Team</h6>
-                                            </Link>
                                             <Link href="/job" class="flex items-center px-2 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white group">
                                                 <svg
                                                     xmlns="http://www.w3.org/2000/svg"
@@ -594,6 +574,19 @@ const sidebarOpen = ref(false);
                             </li>
                         </ul>
                     </nav>
+                    <div class="flex flex-shrink-0 p-4 border-t border-gray-200">
+                        <a href="#" class="flex-shrink-0 block w-full group">
+                            <div class="flex items-center">
+                            <div>
+                                <img class="inline-block rounded-full h-9 w-9" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm font-medium text-white group-hover:text-red-900">Tom Cook</p>
+                                <p class="text-xs font-medium text-gray-300 group-hover:text-red-700">View profile</p>
+                            </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
